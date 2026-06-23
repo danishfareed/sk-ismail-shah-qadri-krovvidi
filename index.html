@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaik Ismail Shah Qadri — Family Tree</title>
+  <meta name="description" content="The reconstructed family tree of Hazrat Qutubul Aarfeen Sirajul Salikeen Shaik Ismail Shah Qadri of Krovvidi, Andhra Pradesh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="bismillah" lang="ar" dir="rtl">هُوَ الْحَيُّ الْقَيُّوم</p>
+      <p class="eyebrow">Hazrat Qutubul Aarfeen · Sirajul Saalikeen</p>
+      <h1 class="patriarch-name">Shaik Ismail Shah Qadri</h1>
+      <p class="subtitle">Family Tree &amp; Lineage · Krovvidi, Andhra Pradesh</p>
+
+      <div class="origin">
+        <p>
+          <strong>Shaik Ismail Shah Qadri</strong> came from <strong>Baghdad</strong> together with his
+          four brothers to spread the <em>tableegh</em> of Deen-e-Islam. The ruler of the time
+          sent him to South India, and so he came to settle in <strong>Krovvidi, Andhra Pradesh</strong>,
+          where his dargah and a mosque stand to this day.
+        </p>
+        <p class="dates">
+          Mosque founded <strong>1524&nbsp;A.D.</strong> · His mazaar lies on the north side of the mosque ·
+          Passed away <strong>1001&nbsp;Hijri / 1592&nbsp;A.D.</strong>, during the reign of Quli Qutub Shah of the Deccan.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="https://maps.app.goo.gl/qhEz8VM44VQ7t6y17" target="_blank" rel="noopener">
+          <span class="ico">📍</span> Dargah &amp; Mosque on Maps
+        </a>
+        <a class="btn btn-ghost" id="add-name-btn" href="#" target="_blank" rel="noopener">
+          <span class="ico">➕</span> Add a name (WhatsApp)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Controls ===== -->
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-inner">
+      <div class="search-wrap">
+        <span class="search-ico">🔎</span>
+        <input id="search" type="search" placeholder="Search any name…" autocomplete="off" />
+        <button id="search-clear" class="search-clear" title="Clear" aria-label="Clear search">×</button>
+        <span id="search-count" class="search-count"></span>
+      </div>
+
+      <div class="view-toggle" role="tablist" aria-label="View">
+        <button class="seg active" id="view-chart" role="tab">Chart</button>
+        <button class="seg" id="view-outline" role="tab">Outline</button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn btn-sm" id="expand-all">Expand all</button>
+        <button class="btn btn-sm" id="collapse-all">Collapse all</button>
+        <button class="btn btn-sm btn-accent" id="jump-mine">★ My lineage</button>
+      </div>
+
+      <div class="tool-group" id="zoom-group">
+        <button class="btn btn-icon" id="zoom-out" title="Zoom out">−</button>
+        <button class="btn btn-icon" id="zoom-reset" title="Reset zoom">⤢</button>
+        <button class="btn btn-icon" id="zoom-in" title="Zoom in">+</button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn btn-sm btn-pdf" id="download-pdf">📄 Print / Save PDF</button>
+        <a class="btn btn-sm" id="pdf-file" href="family-tree.pdf" download>⬇ PDF file</a>
+      </div>
+    </div>
+    <div class="toolbar-meta"><span id="people-count"></span></div>
+  </div>
+
+  <!-- ===== Tree ===== -->
+  <main>
+    <section id="chart-view" class="view">
+      <div class="chart-hint">Drag to pan · scroll / pinch to zoom · click a card to collapse a branch</div>
+      <div class="chart-viewport" id="chart-viewport">
+        <div class="chart-canvas" id="chart-canvas">
+          <ul class="tree" id="tree-root"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="outline-view" class="view hidden">
+      <div class="outline" id="outline-root"></div>
+    </section>
+  </main>
+
+  <!-- Print header (only visible when printing) -->
+  <div class="print-only print-header">
+    <h1>Shaik Ismail Shah Qadri — Family Tree</h1>
+    <p>Hazrat Qutubul Aarfeen Sirajul Saalikeen · Krovvidi, Andhra Pradesh</p>
+    <div id="print-tree"></div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-credits">
+        <p><strong>Original chart</strong> — composed &amp; designed by <strong>Sufi S.M. Mujeeb</strong>.</p>
+        <p><strong>Reconstructed &amp; built into this online version</strong> by <strong>Mohammed Danish</strong>.</p>
+        <p class="footer-add">To add or correct a name, message on WhatsApp:
+          <a id="footer-wa" href="#" target="_blank" rel="noopener">+91 92901 69960</a>.
+        </p>
+      </div>
+      <div class="footer-scans">
+        <p class="scans-label">Original chart scans</p>
+        <div class="scan-thumbs">
+          <a href="assets/scan-1.jpg" target="_blank"><img src="assets/thumb-1.jpg" alt="Original chart batch 1" loading="lazy" /></a>
+          <a href="assets/scan-2.jpg" target="_blank"><img src="assets/thumb-2.jpg" alt="Original chart batch 2" loading="lazy" /></a>
+          <a href="assets/scan-3.jpg" target="_blank"><img src="assets/thumb-3.jpg" alt="Original chart batch 3" loading="lazy" /></a>
+          <a href="assets/scan-4.jpg" target="_blank"><img src="assets/thumb-4.jpg" alt="Original chart batch 4" loading="lazy" /></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-note">
+      Some names on the original ~4&nbsp;ft hand-drawn chart are faint or handwritten; uncertain readings are marked
+      with a small “?”. Spotted something to fix? Please reach out — this tree belongs to the whole family.
+    </p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

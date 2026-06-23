@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+*.swp
+
+# Tooling / test artifacts
+.playwright-mcp/
+test-*.jpeg
+test-*.png
+*.log
+node_modules/
