@@ -6,7 +6,7 @@
   "use strict";
   const DATA = window.FAMILY_DATA || { meta: {}, nodes: [] };
   const META = DATA.meta || {};
-  const INITIAL_DEPTH = 2; // chart/outline expanded to this depth by default
+  const INITIAL_DEPTH = 1; // chart/outline expanded to this depth by default (clean first view)
 
   /* ---------- Build the tree ---------- */
   const byId = new Map();
@@ -74,8 +74,8 @@
         const ul = document.createElement("ul");
         buildChart(n.children, ul);
         li.appendChild(ul);
-        // collapse beyond initial depth (but keep owner path open)
-        if (n.depth >= INITIAL_DEPTH && !ownerPath.has(n.id)) {
+        // collapse beyond initial depth (My lineage expands the owner path on demand)
+        if (n.depth >= INITIAL_DEPTH) {
           li.classList.add("collapsed");
           card.classList.add("collapsed-flag");
         }
@@ -173,7 +173,7 @@
         if (hasKids) {
           rec(n.children, li);
           const caretEl = row.querySelector(".o-caret");
-          const open = n.depth < INITIAL_DEPTH || ownerPath.has(n.id);
+          const open = n.depth < INITIAL_DEPTH;
           if (!open) li.classList.add("collapsed"); else caretEl.classList.add("open");
           caretEl.addEventListener("click", () => {
             const c = li.classList.toggle("collapsed");
@@ -348,7 +348,21 @@
   function maxGen() { let m = 0; byId.forEach(n => { if (n.depth > m) m = n.depth; }); return m; }
   if (pc) pc.textContent = totalPeople + " people · " + (maxGen() + 1) + " generations recorded";
 
+  function centerRootTop() {
+    const el = treeRoot.querySelector(":scope > li > .node");
+    if (!el) return;
+    const vp = viewport.getBoundingClientRect(), nr = el.getBoundingClientRect();
+    panX += (vp.left + vp.width / 2) - (nr.left + nr.width / 2);
+    panY += (vp.top + 28) - nr.top;
+    applyTransform();
+  }
+  function resetView() { scale = 0.82; applyTransform(); centerRootTop(); }
+  document.getElementById("zoom-reset").onclick = resetView;
+
   setView("chart");
-  // start centered-ish
-  requestAnimationFrame(() => { panX = Math.max(20, viewport.clientWidth / 2 - 180); applyTransform(); });
+  // Center the root once layout + web fonts have settled (fonts reflow node widths).
+  resetView();
+  window.addEventListener("load", () => setTimeout(resetView, 60));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(resetView, 60));
+  setTimeout(resetView, 400);
 })();
